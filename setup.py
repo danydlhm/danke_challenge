@@ -18,15 +18,15 @@ with open('requirements.txt') as f:
     requirements = f.read().splitlines()
 
 setup(
-    name = "aoc",
+    name = "danke",
     python_requires='>=3.6',
     version = "1.0.0",
     author = "Usuario",
     author_email = "usuario@localhost.local",
-    description = ("Proyecto Apantallate o Comunicalo"),
+    description = ("Danke proyect"),
     long_description=read('README.md'),
     url = 'http://localhost/proyecto',
-    packages=['aoc', 'tests'],
+    packages=['danke', 'tests'],
     install_requires=requirements,
     cmdclass={ 'clean': CompleteClean },
     test_suite = 'nose.collector'
