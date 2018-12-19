@@ -1,2 +1,4 @@
 os
 setuptools
+pandas
+configparser
