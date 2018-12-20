@@ -2,3 +2,6 @@ os
 setuptools
 pandas
 configparser
+matplotlib
+seaborn
+numpy
