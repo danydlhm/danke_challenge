@@ -4,6 +4,7 @@ import pandas as pd
 import os
 from danke.configuracion import config
 import matplotlib.pyplot as plt
+import statsmodels.api as sm
 from matplotlib.colors import ListedColormap
 import seaborn as sns
 
@@ -29,7 +30,13 @@ if __name__ == '__main__':
     plt.ylabel('Sales')
     plt.plot(sales)
 
-    # number of items per category 
+    # Tendencia y Estacionalidad
+    res = sm.tsa.seasonal_decompose(sales.values,freq=12,model="multiplicative")
+    #plt.figure(figsize=(16,12))
+    fig = res.plot()
+    #fig.show()
+
+    # Number of items per category 
     x=items.groupby(['item_category_id']).count()
     x=x.sort_values(by='item_id',ascending=False)
     x=x.iloc[0:10].reset_index()
@@ -39,7 +46,7 @@ if __name__ == '__main__':
     plt.ylabel('# of items', fontsize=12)
     plt.xlabel('Category', fontsize=12)
     plt.show()
-    
+
     # Sales per Shop
     shop_sales=pd.DataFrame(train.groupby(["shop_id","date_block_num"])["item_cnt_day"].sum())
     shop_sales.reset_index(drop=False, inplace=True)
